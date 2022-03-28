@@ -1,0 +1,20 @@
+.ListItem {
+    width: 14rem;
+    height: 2.5rem;
+    padding: 0.75rem;
+    display: flex;
+    background-color: #e6e6e6;
+}
+
+.ListItem:hover {
+    background-color: #d8d8d8;
+}
+
+.ItemMid {
+    padding: 0 0.5rem;
+    flex: 1;
+}
+
+.ItemRight {
+    width: 2rem;
+}

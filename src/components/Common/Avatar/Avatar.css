@@ -1,0 +1,28 @@
+.XLarge {
+    height: 5.25rem;
+    width: 5.25rem;
+}
+
+.Large {
+    height: 4.5rem;
+    width: 4.5rem;
+}
+
+.Default {
+    height: 3.75rem;
+    width: 3.75rem;
+}
+
+.Small {
+    height: 3rem;
+    width: 3rem;
+}
+
+.XSmall {
+    height: 2.25rem;
+    width: 2.25rem;
+}
+
+.Round {
+    border-radius: 2000px;
+}

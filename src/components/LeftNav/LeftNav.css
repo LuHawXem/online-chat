@@ -1,0 +1,27 @@
+.Avatar {
+    height: 5.5rem;
+}
+
+.Avatar > * {
+    padding-top: 1.25rem;
+}
+
+.Icon {
+    height: 2.5rem;
+    padding-bottom: 0.0625rem;
+    cursor: pointer;
+}
+
+.Icon > img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.Expand {
+    height: 8.5rem;
+}
+
+.Expand > .Icon > img {
+    width: 1.75rem;
+    height: 1.75rem;
+}

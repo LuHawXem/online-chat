@@ -1,0 +1,41 @@
+.MidCol {
+    width: 15.5rem;
+    background-color: #e7e7e7;
+}
+
+.ChatAvatarSize {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.NickName {
+    font-size: 0.9375rem;
+}
+
+.Describe {
+    padding-top: 0.25rem;
+    font-size: 0.5rem;
+    color: #999999;
+}
+
+.InfoBar {
+    height: 3.75rem;
+}
+
+.InputBar {
+    height: 8.5rem;
+    display: flex;
+}
+
+textarea {
+    flex: 1;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    padding: 1.5rem;
+    background-color: unset;
+    border: none;
+    outline: none;
+    resize: none;
+}

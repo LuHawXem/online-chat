@@ -1,0 +1,48 @@
+/* 宽高 */
+.Fill {
+    width: 100%;
+    height: 100%;
+}
+
+.WidthFill {
+    width: 100%;
+}
+
+.HeightFill {
+    height: 100%;
+}
+
+/* flex布局 */
+.Flex {
+    display: flex;
+}
+
+.FlexGrow {
+    flex-grow: 1;
+}
+
+.FlexColumn {
+    flex-direction: column;
+}
+
+.FlexColumnRev {
+    flex-direction: column-reverse;
+}
+
+.AllCenter {
+    justify-content: center;
+    align-items: center;
+}
+
+.JustifyCenter {
+    justify-content: center;
+}
+
+.AlignCenter {
+    align-items: center;
+}
+
+/* 背景颜色 */
+.BgNone {
+    background-color: unset;
+}

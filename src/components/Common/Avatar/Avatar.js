@@ -10,6 +10,7 @@ class Avatar extends React.Component {
         <img
           className={ imgSize + round }
           src={ this.props.src }
+          alt=""
         />
       </div>
     )

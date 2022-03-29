@@ -1,17 +1,4 @@
 @import 'public.css';
 
-.App {
-  height: 40rem;
-  width: 58rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 0 0.125rem black;
-  border-radius: 0.125rem;
-}
-
-.LeftCol {
-  width: 3.5rem;
-  background-color: #2e2e2e;
-  border-radius: 0.125rem 0 0 0.125rem;
-}
 
 

@@ -27,7 +27,7 @@
     padding: 0.125rem;
 }
 
-input {
+#Search {
     outline: none;
     border: none;
     border-radius: 0.25rem;

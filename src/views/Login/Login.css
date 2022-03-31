@@ -1,0 +1,87 @@
+.Login {
+    height: 23.75rem;
+    width: 17.5rem;
+    margin-bottom: 1.875rem;
+    box-shadow: 0 0 0.125rem black;
+    border-radius: 0.125rem;
+}
+
+.InputView {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.InputView > div {
+    width: 16rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.InputView > #Title {
+    height: 1rem;
+    font-size: 85%;
+    font-weight: lighter;
+    color: #999999;
+}
+
+.InputView > #Avatar {
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.InputView > #Input {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#Input > input {
+    height: 1.25rem;
+    width: 11.5rem;
+    font-size: 105%;
+    outline: none;
+}
+
+.OpBtn {
+    height: 8rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Btn {
+    width: 11.25rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
+    border: #d8d8d8 0.0625rem solid;
+    cursor: pointer;
+    font-size: large;
+}
+
+.LogBtn {
+    background-color: #05c1f0;
+}
+
+.LogBtn:hover {
+    background-color: #14d0ff;
+}
+
+.RegBtn {
+    text-decoration: none;
+}
+
+.RegBtn:visited {
+    color: unset;
+}

@@ -49,6 +49,7 @@ class SearchUnit extends React.Component {
               alt=""
             />
             <input
+              id="Search"
               className="FlexGrow BgNone"
               onFocus={ this.handleFocus }
               onBlur={ this.handleFocus }

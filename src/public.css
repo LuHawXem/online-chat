@@ -38,6 +38,14 @@
     justify-content: center;
 }
 
+.JustifyAround {
+    justify-content: space-around;
+}
+
+.JustifyEvenly {
+    justify-content: space-evenly;
+}
+
 .AlignCenter {
     align-items: center;
 }

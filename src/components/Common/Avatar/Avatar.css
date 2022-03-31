@@ -26,3 +26,7 @@
 .Round {
     border-radius: 2000px;
 }
+
+.Radius {
+    border-radius: 0.25rem;
+}

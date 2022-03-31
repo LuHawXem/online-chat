@@ -21,7 +21,7 @@ class LeftNav extends React.Component {
     })
     const expandItems = this.props.expandList.map((item, idx) => {
       return (
-        <div className="Icon Flex JustifyCenter" title={ item.content } key={ idx }>
+        <div className="Icon Flex JustifyCenter" title={ item.content } key={ idx } onClick={ item.onClick }>
           <img src={ item.icon } alt="this is an icon"/>
         </div>
       )

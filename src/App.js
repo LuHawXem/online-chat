@@ -10,9 +10,13 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <AuthProvider>
+        <AuthProvider Data={ localStorage.getItem('session_id') }>
           <Routes>
-            <Route path='/' element={ <MainView/> }/>
+            <Route path='/' element={
+              <RequireAuth>
+                <MainView/>
+              </RequireAuth>
+            }/>
             <Route path='/Login' element={ <Login/> }/>
             <Route path='/Register' element={
               <RequireAuth>

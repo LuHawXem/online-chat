@@ -7,6 +7,9 @@ import ChatIcon from "../../assets/Chat.svg";
 import ContactIcon from "../../assets/Contact.svg";
 import FileIcon from "../../assets/File.svg";
 import MoreIcon from "../../assets/More.svg";
+import { logout } from "../../utils/Interface";
+
+import { useLocation, useNavigate } from "react-router-dom";
 
 class MainView extends React.Component {
   constructor(props) {
@@ -19,6 +22,17 @@ class MainView extends React.Component {
   handleClick = (path) => {
     this.setState({
       path
+    })
+  }
+
+  customClick = () => {
+    logout(localStorage.getItem('session_id')).then(res => {
+      console.log(res)
+      localStorage.removeItem('session_id')
+      let href = window.location.href;
+      window.location.href = href.slice(0, href.lastIndexOf('/')) + '/Login'
+    }).catch(err => {
+      console.log(err)
     })
   }
 
@@ -39,7 +53,7 @@ class MainView extends React.Component {
             }
             expandList={
               [
-                {icon: MoreIcon, content: "更多"}
+                {icon: MoreIcon, content: "更多", onClick: this.customClick }
               ]
             }
             onClick={ this.handleClick }

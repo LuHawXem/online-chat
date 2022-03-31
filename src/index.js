@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+console.log(`程序启动:${process.env.NODE_ENV}`)
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

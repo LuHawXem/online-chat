@@ -6,17 +6,15 @@ function useAuth() {
   return React.useContext(AuthContext);
 }
 
-function AuthProvider({ children, Data, Login, Logout }) {
-  console.log({ children, Data, Login, Logout })
-  let value = { Data, Login, Logout }
-  return <AuthContext.Provider value={ value }>{ children }</AuthContext.Provider>
+function AuthProvider({ children }) {
+  return <AuthContext.Provider value={ null }>{ children }</AuthContext.Provider>
 }
 
 function RequireAuth({ children, RedirectTo }) {
-  let { data } = useAuth()
+  let data = localStorage.getItem('session_id')
   let location = useLocation()
   RedirectTo = RedirectTo ? RedirectTo : '/Login'
-  console.log(location)
+  console.log({location, data})
 
   if(!data) {
     return <Navigate to={ RedirectTo } state={{ from: location }} replace/>;

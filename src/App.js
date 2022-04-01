@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainView from './views/MainView/MainView';
 import Login from './views/Login/Login'
 import Register from './views/Register/Register';
-import { AuthProvider, RequireAuth } from './components/RouterAuth/AuthProvider';
+import { AuthProvider, AuthRouter, RequireAuth } from './components/RouterAuth/AuthProvider';
 
 class App extends React.Component {
   render() {
@@ -17,7 +17,11 @@ class App extends React.Component {
                 <MainView/>
               </RequireAuth>
             }/>
-            <Route path='/Login' element={ <Login/> }/>
+            <Route path='/Login' element={
+              <AuthRouter>
+                <Login/>
+              </AuthRouter>
+            }/>
             <Route path='/Register' element={
               <RequireAuth>
                 <Register/>

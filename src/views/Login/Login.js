@@ -2,7 +2,7 @@ import React from 'react'
 import './Login.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Avatar from '../../components/Common/Avatar/Avatar';
-import { login } from '../../utils/Interface'
+import { login } from '../../utils/request/Interface'
 
 function Login() {
   let navigate = useNavigate();

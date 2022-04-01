@@ -21,6 +21,10 @@
     flex-grow: 1;
 }
 
+.FlexNoShrink {
+    flex-shrink: 0;
+}
+
 .FlexColumn {
     flex-direction: column;
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-import Conf from '../config/config.json'
+import Conf from '../../config.json'
 
 const _axios = axios.create()
 

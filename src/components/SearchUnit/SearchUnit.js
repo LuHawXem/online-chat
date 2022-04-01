@@ -40,7 +40,7 @@ class SearchUnit extends React.Component {
 
   render() {
     return (
-      <div className="SearchUnit Flex FlexColumnRev">
+      <div className="SearchUnit Flex FlexColumnRev FlexNoShrink">
         <div className="Input Fill">
           <div className="Flex FlexGrow">
             <img

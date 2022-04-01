@@ -3,7 +3,9 @@ function mockLogin(username, password) {
     if(username === "test" && password === "test") {
       resolve({
         'msg': 'mock data returned',
-        'session_id': 114514
+        'session_id': 114514,
+        'avatar': 'https://cloudflare.luhawxem.com',
+        'nickname': '草帽'
       })
     }
     else {

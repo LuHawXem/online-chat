@@ -1,6 +1,6 @@
 import { mockLogin, mockLogout } from "./Mock";
 import { realLogin, realLogout } from "./Authentic";
-import Conf from '../config/config.json'
+import Conf from '../../config.json'
 
 function login(username, password) {
   if(Conf.useMock) return mockLogin(username, password)

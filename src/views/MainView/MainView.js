@@ -7,7 +7,7 @@ import ChatIcon from "../../assets/Chat.svg";
 import ContactIcon from "../../assets/Contact.svg";
 import FileIcon from "../../assets/File.svg";
 import MoreIcon from "../../assets/More.svg";
-import { logout } from "../../utils/Interface";
+import { logout } from "../../utils/request/Interface";
 
 import { useLocation, useNavigate } from "react-router-dom";
 

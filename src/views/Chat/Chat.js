@@ -4,6 +4,7 @@ import SplitLine from "../../components/Common/SplitLine/SplitLine";
 import SearchUnit from "../../components/SearchUnit/SearchUnit";
 import ListItem from "../../components/ListItem/ListItem";
 import Avatar from "../../components/Common/Avatar/Avatar";
+import ScrollProvider from "../../components/Common/ScrollProvider/ScrollProvider";
 
 class ChatPage extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class ChatPage extends React.Component {
 
   render() {
     const chatList = [];
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < 11; i++) {
       chatList.push(
         <ListItem
           isSelect={ i === this.state.onSelect }
@@ -53,23 +54,27 @@ class ChatPage extends React.Component {
         <div className="MidCol Flex FlexColumn">
           <SearchUnit/>
           <SplitLine/>
-          <div className="FlexGrow">
-            { chatList }
-          </div>
+          <ScrollProvider>
+            <div id="ChatList" className="FlexGrow">
+              { chatList }
+            </div>
+          </ScrollProvider>
         </div>
         <SplitLine column/>
         <div className="FlexGrow Flex FlexColumn">
-          <div className="InfoBar">
-            <div style={{ padding: "1rem 0 1rem 1.25rem", fontSize: "1.25rem" }}>
+          <div className="InfoBar FlexNoShrink">
+            <div>
               { this.state.info.title }
             </div>
           </div>
           <SplitLine/>
-          <div className="FlexGrow">
+          <ScrollProvider>
+            <div id="ChatContent" className="FlexGrow">
 
-          </div>
+            </div>
+          </ScrollProvider>
           <SplitLine/>
-          <div className="InputBar Flex">
+          <div className="InputBar Flex FlexNoShrink">
             <textarea/>
           </div>
         </div>

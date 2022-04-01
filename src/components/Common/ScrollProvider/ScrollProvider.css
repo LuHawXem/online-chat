@@ -1,0 +1,27 @@
+.ScrollContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.ScrollContainer:hover > .ScrollBar > .Thumb {
+    opacity: 0.75;
+}
+
+.ScrollBar {
+    width: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.Thumb {
+    position: relative;
+    width: 0.5rem;
+    height: 2rem;
+    border-radius: 2000px;
+    background-color: #aeadaa;
+    opacity: 0;
+}

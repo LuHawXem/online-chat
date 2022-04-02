@@ -1,0 +1,14 @@
+{
+  "useMock": true,
+  "mockData": {
+    "login": {
+      "username": "",
+      "password": "",
+      "session_id": 0,
+      "avatar": "",
+      "nickname": ""
+    }
+  },
+  "defaultAvatar": "",
+  "baseURL": ""
+}

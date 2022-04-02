@@ -1,6 +1,7 @@
 import React from 'react'
 import './Login.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Conf from '../../config.json'
 import Avatar from '../../components/Common/Avatar/Avatar';
 import { login } from '../../utils/request/Interface'
 
@@ -17,7 +18,12 @@ function Login() {
     console.log({username, password})
     login(username, password).then(res => {
       console.log(res);
-      localStorage.setItem('session_id', res.session_id)
+      let data = {
+        "session_id": res.session_id,
+        "nickname": res.nickname,
+        "avatar": res.avatar,
+      }
+      localStorage.setItem('profile', JSON.stringify(data))
       navigate(from, { replace: true });
     }).catch(err => {
       console.log(err);
@@ -29,7 +35,7 @@ function Login() {
       <div className="InputView">
         <div id="Title">在线聊天</div>
         <div id="Avatar">
-          <Avatar src="https://cloudflare.luhawxem.com/img/Avatar.jpg" size="XLarge" radius/>
+          <Avatar src={ Conf.defaultAvatar } size="XLarge" radius/>
         </div>
         <form id="Input">
           <input name="username" placeholder="账号"/>

@@ -1,16 +1,19 @@
+import Conf from '../../config.json'
+
 function mockLogin(username, password) {
+  const { login } = Conf.mockData
   return new Promise((resolve, reject) => {
-    if(username === "test" && password === "test") {
+    if(username === login.username && password === login.password) {
       resolve({
         'msg': 'mock data returned',
-        'session_id': 114514,
-        'avatar': 'https://cloudflare.luhawxem.com',
-        'nickname': '草帽'
+        'session_id': login.session_id,
+        'avatar': login.avatar,
+        'nickname': login.nickname
       })
     }
     else {
       reject({
-        'errmsg': 'username or password is wrong'
+        'msg': 'username or password is wrong'
       })
     }
   })
@@ -25,7 +28,7 @@ function mockLogout(sessionId) {
     }
     else {
       reject({
-        'errmsg': 'something wrong'
+        'msg': 'something wrong'
       })
     }
   })

@@ -8,12 +8,13 @@ function AuthProvider({ children }) {
 }
 
 function RequireAuth({ children, RedirectTo }) {
-  let data = localStorage.getItem('session_id')
+  let data = localStorage.getItem('profile')
+  let obj = JSON.parse(data) || null
   let location = useLocation()
   RedirectTo = RedirectTo ? RedirectTo : '/Login'
   console.log({location, data})
 
-  if(!data) {
+  if(!data || !obj || !obj.session_id) {
     return <Navigate to={ RedirectTo } state={{ from: location }} replace/>;
   }
 
@@ -21,12 +22,13 @@ function RequireAuth({ children, RedirectTo }) {
 }
 
 function AuthRouter({ children, RedirectTo }) {
-  let data = localStorage.getItem('session_id')
+  let data = localStorage.getItem('profile')
+  let obj = JSON.parse(data) || null
   let location = useLocation()
   RedirectTo = RedirectTo ? RedirectTo : '/'
   console.log({location, data})
 
-  if(data) {
+  if(data && obj && obj.session_id) {
     return <Navigate to={ RedirectTo } state={{ from: location }} replace/>;
   }
 

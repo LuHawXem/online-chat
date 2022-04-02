@@ -1,5 +1,5 @@
-import React from 'react'
-import './Chat.css'
+import React from "react"
+import "./Chat.css"
 import SplitLine from "../../components/Common/SplitLine/SplitLine";
 import SearchUnit from "../../components/SearchUnit/SearchUnit";
 import ListItem from "../../components/ListItem/ListItem";

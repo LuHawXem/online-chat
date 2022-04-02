@@ -1,5 +1,6 @@
-import React from 'react';
-import './MainView.css'
+import React from "react";
+import "./MainView.css"
+import Conf from "../../config.json"
 import ChatPage from "../Chat/Chat";
 import ContactPage from "../Contact/Contact";
 import LeftNav from "../../components/LeftNav/LeftNav";
@@ -9,13 +10,12 @@ import FileIcon from "../../assets/File.svg";
 import MoreIcon from "../../assets/More.svg";
 import { logout } from "../../utils/request/Interface";
 
-import { useLocation, useNavigate } from "react-router-dom";
 
 class MainView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      path: '/Chat'
+      path: "/Chat"
     }
   }
 
@@ -26,29 +26,29 @@ class MainView extends React.Component {
   }
 
   customClick = () => {
-    logout(localStorage.getItem('session_id')).then(res => {
+    logout(localStorage.getItem("session_id")).then(res => {
       console.log(res)
-      localStorage.removeItem('session_id')
+      localStorage.removeItem("session_id")
       let href = window.location.href;
-      window.location.href = href.slice(0, href.lastIndexOf('/')) + '/Login'
+      window.location.href = href.slice(0, href.lastIndexOf("/")) + "/Login"
     }).catch(err => {
       console.log(err)
     })
   }
 
   render() {
-    const main = this.state.path === '/Chat' ? <ChatPage/> : <ContactPage/>
+    const main = this.state.path === "/Chat" ? <ChatPage/> : <ContactPage/>
 
     return (
       <div className="Main Flex">
         <nav className="LeftCol">
           <LeftNav
-            avatar="https://cloudflare.luhawxem.com/img/Avatar.jpg"
+            avatar={ Conf.defaultAvatar }
             navList={
               [
-                {icon: ChatIcon, content: "聊天", path: '/Chat'},
-                {icon: ContactIcon, content: "通讯录", path: '/Contact'},
-                {icon: FileIcon, content: "聊天文件", path: '/File'},
+                {icon: ChatIcon, content: "聊天", path: "/Chat"},
+                {icon: ContactIcon, content: "通讯录", path: "/Contact"},
+                {icon: FileIcon, content: "聊天文件", path: "/File"},
               ]
             }
             expandList={

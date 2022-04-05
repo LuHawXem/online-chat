@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 const AuthContext = React.createContext(null);
 
@@ -12,9 +12,8 @@ function RequireAuth({ children, RedirectTo }) {
   let obj = JSON.parse(data) || null
   let location = useLocation()
   RedirectTo = RedirectTo ? RedirectTo : '/Login'
-  console.log({location, data})
 
-  if(!data || !obj || !obj.session_id) {
+  if(!data || !obj || !obj.token) {
     return <Navigate to={ RedirectTo } state={{ from: location }} replace/>;
   }
 
@@ -26,9 +25,8 @@ function AuthRouter({ children, RedirectTo }) {
   let obj = JSON.parse(data) || null
   let location = useLocation()
   RedirectTo = RedirectTo ? RedirectTo : '/'
-  console.log({location, data})
 
-  if(data && obj && obj.session_id) {
+  if(data && obj && obj.token) {
     return <Navigate to={ RedirectTo } state={{ from: location }} replace/>;
   }
 

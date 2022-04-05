@@ -16,10 +16,12 @@ _axios.interceptors.request.use(
 
 _axios.interceptors.response.use(
   (response) => {
-    return response;
+    console.log(`request:${response.config.url}, data:${JSON.stringify(response.data)}`)
+    return response.data;
   },
   (error) => {
-    return Promise.reject(error);
+    console.log(`request:${error.response.config.url}, data:${JSON.stringify(error.response.data)}`)
+    return Promise.reject(error.response.data);
   }
 )
 

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Conf from '../../config.json'
 import Avatar from '../../components/Common/Avatar/Avatar';
 import { login } from '../../utils/request/Interface'
+import { EncryptOAEP } from "../../utils/utils";
 
 function Login() {
   let navigate = useNavigate();
@@ -12,14 +13,12 @@ function Login() {
 
   const handleLogin = () => {
     let formData = new FormData(document.getElementById('Input'))
-    let username = formData.get("username");
+    let account = formData.get("account");
     let password = formData.get("password");
-
-    console.log({username, password})
-    login(username, password).then(res => {
-      console.log(res);
+    password = EncryptOAEP(password)
+    login(account, password).then(res => {
       let data = {
-        "session_id": res.session_id,
+        "token": res.token,
         "nickname": res.nickname,
         "avatar": res.avatar,
       }
@@ -38,7 +37,7 @@ function Login() {
           <Avatar src={ Conf.defaultAvatar } size="XLarge" radius/>
         </div>
         <form id="Input">
-          <input name="username" placeholder="账号"/>
+          <input name="account" placeholder="账号" defaultValue={ localStorage.getItem("account") || null }/>
           <input name="password" type="password" placeholder="密码" maxLength="16"/>
         </form>
       </div>

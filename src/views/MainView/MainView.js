@@ -10,13 +10,34 @@ import FileIcon from "../../assets/File.svg";
 import MoreIcon from "../../assets/More.svg";
 import { logout } from "../../utils/request/Interface";
 
-
 class MainView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       path: "/Chat"
     }
+  }
+
+  componentDidMount = () => {
+    let data = localStorage.getItem("profile")
+    data = JSON.parse(data)
+    let ws = new WebSocket(Conf.websocketURL + "/ws?token=" + data.token)
+    ws.onopen = function (e) {
+      console.log(e)
+    }
+    ws.onmessage = function (e) {
+      console.log(e)
+    }
+    // $ajax.GET({
+    //   url: '/ws',
+    //   headers: {
+    //     "token": data.token
+    //   }
+    // }).then(res => {
+    //   console.log(res)
+    // }).catch(err => {
+    //   console.log(err)
+    // })
   }
 
   handleClick = (path) => {
@@ -26,11 +47,15 @@ class MainView extends React.Component {
   }
 
   customClick = () => {
-    logout(localStorage.getItem("session_id")).then(res => {
-      console.log(res)
-      localStorage.removeItem("session_id")
-      let href = window.location.href;
-      window.location.href = href.slice(0, href.lastIndexOf("/")) + "/Login"
+    let data = localStorage.getItem("profile")
+    data = JSON.parse(data)
+    logout(data.token).then(res => {
+      localStorage.removeItem("profile")
+      setTimeout(() => {
+        alert("登出用户成功")
+        let href = window.location.href;
+        window.location.href = href.slice(0, href.lastIndexOf("/")) + "/Login"
+      }, 1000)
     }).catch(err => {
       console.log(err)
     })

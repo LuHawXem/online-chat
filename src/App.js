@@ -23,9 +23,9 @@ class App extends React.Component {
               </AuthRouter>
             }/>
             <Route path='/Register' element={
-              <RequireAuth>
+              <AuthRouter>
                 <Register/>
-              </RequireAuth>
+              </AuthRouter>
             } />
           </Routes>
         </AuthProvider>

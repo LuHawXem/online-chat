@@ -2,13 +2,15 @@
   "useMock": true,
   "mockData": {
     "login": {
-      "username": "",
+      "account": "",
       "password": "",
-      "session_id": 0,
+      "token": "",
       "avatar": "",
       "nickname": ""
     }
   },
   "defaultAvatar": "",
-  "baseURL": ""
+  "baseURL": "",
+  "websocketURL": "",
+  "publicKey": "RSA_public_key"
 }

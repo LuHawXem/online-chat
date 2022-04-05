@@ -5555,6 +5555,11 @@ jsonpointer@^5.0.0:
   resolved "https://repo.huaweicloud.com/repository/npm/jsonpointer/-/jsonpointer-5.0.0.tgz#f802669a524ec4805fa7389eadbc9921d5dc8072"
   integrity sha512-PNYZIdMjVIvVgDSYKTT63Y+KZ6IZvGRNNWcxwD+GNnUz1MKPfv30J8ueCjdwcN0nDx2SlshgyB7Oy0epAzVRRg==
 
+jsrsasign@^10.5.14:
+  version "10.5.14"
+  resolved "https://repo.huaweicloud.com/repository/npm/jsrsasign/-/jsrsasign-10.5.14.tgz#863eb76323c7d5aedfcbb84b600ce7cbdbd3d781"
+  integrity sha512-W49L90gR5E8lOMfZJzhq/JHM2Am6slJWsaI/aiyDZurK1CQly9/FN9ZCvM5ez8Svbw5+CwVEH25iIARLoh4Viw==
+
 "jsx-ast-utils@^2.4.1 || ^3.0.0", jsx-ast-utils@^3.2.1:
   version "3.2.1"
   resolved "https://repo.huaweicloud.com/repository/npm/jsx-ast-utils/-/jsx-ast-utils-3.2.1.tgz#720b97bfe7d901b927d87c3773637ae8ea48781b"

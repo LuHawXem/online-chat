@@ -1,22 +1,32 @@
 import $ajax from "./Request";
 
-function realLogin(username, password) {
+function realRegister(nickname, password) {
+  return $ajax.POST({
+    url: '/register',
+    data: {
+      nickname,
+      password
+    }
+  })
+}
+
+function realLogin(account, password) {
   return $ajax.POST({
     url: '/login',
     data: {
-      username,
+      account,
       password,
     }
   })
 }
 
-function realLogout(sessionId) {
+function realLogout(token) {
   return $ajax.POST({
     url: '/logout',
-    data: {
-      "session_id": sessionId
+    headers: {
+      "token": token
     }
   })
 }
 
-export { realLogin, realLogout }
+export { realRegister, realLogin, realLogout }

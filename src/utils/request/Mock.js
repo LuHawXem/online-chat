@@ -1,27 +1,37 @@
 import Conf from '../../config.json'
 
-function mockLogin(username, password) {
+function mockRegister(nickname, password) {
+  return new Promise((resolve) => {
+    resolve({
+      'msg': 'mock data returned',
+      'account': Conf.mockData.login.account
+    })
+  })
+}
+
+function mockLogin(account, password) {
   const { login } = Conf.mockData
   return new Promise((resolve, reject) => {
-    if(username === login.username && password === login.password) {
+    if(account === login.account && password === login.password) {
       resolve({
         'msg': 'mock data returned',
-        'session_id': login.session_id,
+        'token': login.token,
         'avatar': login.avatar,
         'nickname': login.nickname
       })
     }
     else {
       reject({
-        'msg': 'username or password is wrong'
+        'msg': 'account or password is wrong'
       })
     }
   })
 }
 
-function mockLogout(sessionId) {
+function mockLogout(token) {
   return new Promise((resolve, reject) => {
-    if(Number(sessionId) === 114514) {
+    const { login } = Conf.mockData
+    if(token === login.token) {
       resolve({
         'msg': 'user is logout'
       })
@@ -34,4 +44,4 @@ function mockLogout(sessionId) {
   })
 }
 
-export { mockLogin, mockLogout }
+export { mockRegister, mockLogin, mockLogout }

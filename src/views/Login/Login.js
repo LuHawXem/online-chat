@@ -23,6 +23,7 @@ function Login() {
         "avatar": res.avatar,
       }
       localStorage.setItem('profile', JSON.stringify(data))
+      localStorage.removeItem("account")
       navigate(from, { replace: true });
     }).catch(err => {
       console.log(err);
@@ -37,7 +38,7 @@ function Login() {
           <Avatar src={ Conf.defaultAvatar } size="XLarge" radius/>
         </div>
         <form id="Input">
-          <input name="account" placeholder="账号" defaultValue={ localStorage.getItem("account") || null }/>
+          <input name="account" placeholder="账号" minLength="10" defaultValue={ localStorage.getItem("account") || null }/>
           <input name="password" type="password" placeholder="密码" maxLength="16"/>
         </form>
       </div>

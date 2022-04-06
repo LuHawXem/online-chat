@@ -9,6 +9,7 @@ import ContactIcon from "../../assets/Contact.svg";
 import FileIcon from "../../assets/File.svg";
 import MoreIcon from "../../assets/More.svg";
 import { logout } from "../../utils/request/Interface";
+import $ajax from "../../utils/request/Request";
 
 class MainView extends React.Component {
   constructor(props) {
@@ -19,25 +20,34 @@ class MainView extends React.Component {
   }
 
   componentDidMount = () => {
+    if(Conf.useMock) return
     let data = localStorage.getItem("profile")
     data = JSON.parse(data)
-    let ws = new WebSocket(Conf.websocketURL + "/ws?token=" + data.token)
+    let ws = new WebSocket(Conf.websocketURL + "/ws?token=" + encodeURIComponent(data.token))
+    ws.onerror = function (e) {
+      $ajax.HEAD({
+        url: "/test?token=" + encodeURIComponent(data.token)
+      }).catch(err => {
+        if(err.status === 401) {
+          localStorage.removeItem("profile")
+          setTimeout(() => {
+            alert("登录信息过期,请重新登录")
+            let href = window.location.href;
+            window.location.href = href.slice(0, href.lastIndexOf("/")) + "/Login"
+          }, 1000)
+        }
+        else {
+          console.log(err.data)
+          ws = new WebSocket(Conf.websocketURL + "/ws?token=" + encodeURIComponent(data.token))
+        }
+      })
+    }
     ws.onopen = function (e) {
       console.log(e)
     }
     ws.onmessage = function (e) {
       console.log(e)
     }
-    // $ajax.GET({
-    //   url: '/ws',
-    //   headers: {
-    //     "token": data.token
-    //   }
-    // }).then(res => {
-    //   console.log(res)
-    // }).catch(err => {
-    //   console.log(err)
-    // })
   }
 
   handleClick = (path) => {

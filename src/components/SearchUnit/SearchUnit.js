@@ -29,6 +29,7 @@ class SearchUnit extends React.Component {
     this.setState({
       inputValue: e.target.value
     })
+    if(this.props.getInputData) this.props.getInputData(e.target.value)
   }
 
   handleClean = () => {
@@ -51,6 +52,7 @@ class SearchUnit extends React.Component {
             <input
               id="Search"
               className="FlexGrow BgNone"
+              placeholder={ this.props.placeholder }
               onFocus={ this.handleFocus }
               onBlur={ this.handleFocus }
               onChange={ this.handleInput }

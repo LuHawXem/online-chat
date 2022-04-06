@@ -15,6 +15,10 @@
     background-color: #e2e2e2;
 }
 
+.Input > div+* {
+    margin-left: 0.5rem;
+}
+
 #SearchIcon {
     height: 1rem;
     width: 1rem;
@@ -28,6 +32,7 @@
 }
 
 #Search {
+    width: 0;
     outline: none;
     border: none;
     border-radius: 0.25rem;

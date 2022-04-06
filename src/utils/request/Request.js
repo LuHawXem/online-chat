@@ -21,7 +21,7 @@ _axios.interceptors.response.use(
   },
   (error) => {
     console.log(`request:${error.response.config.url}, data:${JSON.stringify(error.response.data)}`)
-    return Promise.reject(error.response.data);
+    return Promise.reject(error.response);
   }
 )
 
@@ -51,6 +51,10 @@ function $ajax(options) {
 
 $ajax.GET = function (options) {
   return $ajax({...options, method: "GET"})
+}
+
+$ajax.HEAD = function (options) {
+  return $ajax({...options, method: "HEAD"})
 }
 
 $ajax.POST = function (options) {

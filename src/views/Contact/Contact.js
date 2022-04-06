@@ -14,7 +14,8 @@ class ContactPage extends React.Component {
       info: {
         title: null,
         data: null
-      }
+      },
+      addMode: false,
     }
   }
 
@@ -25,12 +26,18 @@ class ContactPage extends React.Component {
     })
   }
 
+  getSearchValue = (value) => {
+    this.setState({
+      inputValue: value
+    })
+  }
+
   render() {
     const contactList = [];
-    for(let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
       contactList.push(
         <ListItem
-          isSelect={ i === this.state.onSelect }
+          isSelect={i === this.state.onSelect}
           left={
             <Avatar
               customSize="ContactAvatarSize"
@@ -39,23 +46,37 @@ class ContactPage extends React.Component {
           }
           mid={
             <div className="Fill Flex AlignCenter">
-              <div className="NickName">昵称:{ i }</div>
+              <div className="NickName">昵称:{i}</div>
             </div>
           }
-          onClick={ this.handleClick.bind(this, i, { title: `昵称:${i}`, data: []}) }
-          key={ i }
+          onClick={this.handleClick.bind(this, i, {title: `昵称:${i}`, data: []})}
+          key={i}
         />
       )
     }
+    let search = !this.state.addMode
+      ? (<SearchUnit
+          slot={
+            <div className="AddBtn" onClick={ () => {this.setState({addMode: true})} }>+</div>
+          }
+          placeholder="搜索"
+        />)
+      : (<SearchUnit
+        getInputData={this.getSearchValue}
+        slot={
+          <span className="Cancel" onClick={ () => {this.setState({addMode: false})} }>取消</span>
+        }
+        placeholder="ct号"
+      />)
 
     return (
       <div className="Flex Fill">
         <div className="MidCol Flex FlexColumn">
-          <SearchUnit/>
+          {search}
           <SplitLine/>
           <ScrollProvider>
             <div id="ContactList" className="FlexGrow">
-              { contactList }
+              { !this.state.addMode ? contactList : this.state.inputValue }
             </div>
           </ScrollProvider>
         </div>
@@ -63,7 +84,7 @@ class ContactPage extends React.Component {
         <div className="FlexGrow Flex FlexColumn">
           <div className="InfoBar FlexNoShrink">
             <div>
-              { this.state.info.title }
+              {this.state.info.title}
             </div>
           </div>
           <SplitLine/>

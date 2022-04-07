@@ -32,12 +32,47 @@ class ContactPage extends React.Component {
     })
   }
 
+  searchUser = () => {
+    if(this.state.inputValue.length === 10) {
+      let message = {
+        receiver: 0,
+        content: this.state.inputValue,
+        type: 4
+      }
+      this.props.ws.onmessage = (e) => {
+        console.log(JSON.parse(e.data))
+      }
+      this.props.ws.send(JSON.stringify(message))
+    }
+  }
+
   render() {
     const contactList = [];
-    for (let i = 0; i < 5; i++) {
+    if(!this.state.addMode) {
+      for (let i = 0; i < 5; i++) {
+        contactList.push(
+          <ListItem
+            isSelect={i === this.state.onSelect}
+            left={
+              <Avatar
+                customSize="ContactAvatarSize"
+                src="https://cloudflare.luhawxem.com/img/Avatar.jpg"
+              />
+            }
+            mid={
+              <div className="Fill Flex AlignCenter">
+                <div className="NickName">昵称:{i}</div>
+              </div>
+            }
+            onClick={this.handleClick.bind(this, i, {title: `昵称:${i}`, data: []})}
+            key={i}
+          />
+        )
+      }
+    }
+    else {
       contactList.push(
         <ListItem
-          isSelect={i === this.state.onSelect}
           left={
             <Avatar
               customSize="ContactAvatarSize"
@@ -45,15 +80,22 @@ class ContactPage extends React.Component {
             />
           }
           mid={
-            <div className="Fill Flex AlignCenter">
-              <div className="NickName">昵称:{i}</div>
+            <div className="Fill Flex AlignCenter" style={{ width: "10rem" }}>
+              <div className="SearchItem">搜索用户:{this.state.inputValue}</div>
             </div>
           }
-          onClick={this.handleClick.bind(this, i, {title: `昵称:${i}`, data: []})}
-          key={i}
+          right={
+            <div className="Flex AlignCenter HeightFill">
+              >
+            </div>
+          }
+          onClick={this.searchUser}
+          key={0}
         />
       )
     }
+
+
     let search = !this.state.addMode
       ? (<SearchUnit
           slot={
@@ -66,7 +108,7 @@ class ContactPage extends React.Component {
         slot={
           <span className="Cancel" onClick={ () => {this.setState({addMode: false})} }>取消</span>
         }
-        placeholder="ct号"
+        placeholder="chat号"
       />)
 
     return (
@@ -76,7 +118,7 @@ class ContactPage extends React.Component {
           <SplitLine/>
           <ScrollProvider>
             <div id="ContactList" className="FlexGrow">
-              { !this.state.addMode ? contactList : this.state.inputValue }
+              {contactList}
             </div>
           </ScrollProvider>
         </div>

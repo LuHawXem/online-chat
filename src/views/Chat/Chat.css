@@ -12,6 +12,13 @@
     font-size: 0.9375rem;
 }
 
+.SearchItem {
+    font-size: 0.9375rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .Describe {
     padding-top: 0.25rem;
     font-size: 0.5rem;

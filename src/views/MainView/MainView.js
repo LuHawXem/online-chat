@@ -20,10 +20,14 @@ class MainView extends React.Component {
   }
 
   componentDidMount = () => {
+    const that = this
     if(Conf.useMock) return
     let data = localStorage.getItem("profile")
     data = JSON.parse(data)
     let ws = new WebSocket(Conf.websocketURL + "/ws?token=" + encodeURIComponent(data.token))
+    that.setState({
+      ws
+    })
     ws.onerror = function (e) {
       $ajax.HEAD({
         url: "/test?token=" + encodeURIComponent(data.token)
@@ -39,11 +43,11 @@ class MainView extends React.Component {
         else {
           console.log(err.data)
           ws = new WebSocket(Conf.websocketURL + "/ws?token=" + encodeURIComponent(data.token))
+          that.setState({
+            ws
+          })
         }
       })
-    }
-    ws.onopen = function (e) {
-      console.log(e)
     }
     ws.onmessage = function (e) {
       console.log(e)
@@ -72,7 +76,7 @@ class MainView extends React.Component {
   }
 
   render() {
-    const main = this.state.path === "/Chat" ? <ChatPage/> : <ContactPage/>
+    const main = this.state.path === "/Chat" ? <ChatPage/> : <ContactPage ws={this.state.ws}/>
 
     return (
       <div className="Main Flex">

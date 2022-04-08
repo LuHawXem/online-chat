@@ -37,6 +37,7 @@ class SearchUnit extends React.Component {
       showClose: false,
       inputValue: ""
     })
+    if(this.props.getInputData) this.props.getInputData("")
   }
 
   render() {

@@ -11,24 +11,37 @@ import MoreIcon from "../../assets/More.svg";
 import { logout } from "../../utils/request/Interface";
 import $ajax from "../../utils/request/Request";
 
+let messageBox = {}
+
 class MainView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      path: "/Chat"
+      path: "/Chat",
+      retry: false,
     }
   }
 
+  interval = null
+
   componentDidMount = () => {
-    const that = this
     if(Conf.useMock) return
+    const that = this
     let data = localStorage.getItem("profile")
     data = JSON.parse(data)
     let ws = new WebSocket(Conf.websocketURL + "/ws?token=" + encodeURIComponent(data.token))
+    that.interval = setInterval(() => {
+      let heartbeat = {
+        type: 200
+      }
+      ws.send(JSON.stringify(heartbeat))
+    }, 50000)
     that.setState({
       ws
     })
     ws.onerror = function (e) {
+      clearInterval(that.interval)
+      if(that.state.retry) return
       $ajax.HEAD({
         url: "/test?token=" + encodeURIComponent(data.token)
       }).catch(err => {
@@ -43,15 +56,29 @@ class MainView extends React.Component {
         else {
           console.log(err.data)
           ws = new WebSocket(Conf.websocketURL + "/ws?token=" + encodeURIComponent(data.token))
+          that.interval = setInterval(() => {
+            let heartbeat = {
+              type: 200
+            }
+            ws.send(JSON.stringify(heartbeat))
+          }, 50000)
           that.setState({
-            ws
+            ws,
+            retry: true,
           })
         }
       })
     }
     ws.onmessage = function (e) {
-      console.log(e)
+      let message = JSON.parse(e.data)
+      if(messageBox[message.type]) messageBox[message.type].push(message)
+      else messageBox[message.type] = [message]
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+    this.state.ws.close()
   }
 
   handleClick = (path) => {
@@ -76,7 +103,9 @@ class MainView extends React.Component {
   }
 
   render() {
-    const main = this.state.path === "/Chat" ? <ChatPage/> : <ContactPage ws={this.state.ws}/>
+    const main = this.state.path === "/Chat"
+      ? <ChatPage ws={this.state.ws}/>
+      : <ContactPage ws={this.state.ws} messageBox={messageBox}/>
 
     return (
       <div className="Main Flex">
@@ -85,9 +114,9 @@ class MainView extends React.Component {
             avatar={ Conf.defaultAvatar }
             navList={
               [
-                {icon: ChatIcon, content: "聊天", path: "/Chat"},
-                {icon: ContactIcon, content: "通讯录", path: "/Contact"},
-                {icon: FileIcon, content: "聊天文件", path: "/File"},
+                {icon: ChatIcon, content: "聊天(假的)", path: "/Chat"},
+                {icon: ContactIcon, content: "通讯录(真实的聊天)", path: "/Contact"},
+                // {icon: FileIcon, content: "聊天文件", path: "/File"},
               ]
             }
             expandList={

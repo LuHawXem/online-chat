@@ -1,5 +1,5 @@
 .ListItem {
-    width: 14rem;
+    /*width: 14rem;*/
     height: 2.5rem;
     padding: 0.75rem;
     display: flex;
@@ -17,4 +17,9 @@
 
 .ItemRight {
     width: 2rem;
+}
+
+.ItemExpand {
+    position: absolute;
+    z-index: 1;
 }

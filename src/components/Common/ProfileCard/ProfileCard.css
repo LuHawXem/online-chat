@@ -1,0 +1,42 @@
+.ProfileCard {
+    width: 18.5rem;
+    min-height: 15rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0.25rem #d2d2d2;
+    position: absolute;
+    z-index: 10;
+}
+
+.ProfileCard > div {
+    margin: 2rem;
+    min-height: 11rem;
+}
+
+.Profile {
+    height: 3.75rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+}
+
+.Addition {
+    height: 5.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.Addition > .Info {
+    flex-grow: 1;
+    padding-top: 1rem;
+}
+
+.Addition > div > img {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+#Region::before {
+    content: "地 区";
+    color: #d2d2d2;
+    padding-right: 1.25rem;
+}

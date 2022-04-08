@@ -5,6 +5,7 @@ import SearchUnit from "../../components/SearchUnit/SearchUnit";
 import ListItem from "../../components/ListItem/ListItem";
 import Avatar from "../../components/Common/Avatar/Avatar";
 import ScrollProvider from "../../components/Common/ScrollProvider/ScrollProvider";
+import Conf from "../../config.json"
 
 class ChatPage extends React.Component {
   constructor(props) {
@@ -27,14 +28,14 @@ class ChatPage extends React.Component {
 
   render() {
     const chatList = [];
-    for(let i = 0; i < 11; i++) {
+    for(let i = 0; i < 5; i++) {
       chatList.push(
         <ListItem
           isSelect={ i === this.state.onSelect }
           left={
             <Avatar
               customSize="ChatAvatarSize"
-              src="https://cloudflare.luhawxem.com/img/Avatar.jpg"
+              src={Conf.defaultAvatar}
             />
           }
           mid={

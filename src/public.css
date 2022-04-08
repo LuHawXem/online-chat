@@ -33,6 +33,10 @@
     flex-direction: column-reverse;
 }
 
+.FlexRowRev {
+    flex-direction: row-reverse;
+}
+
 .AllCenter {
     justify-content: center;
     align-items: center;

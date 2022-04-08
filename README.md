@@ -1,70 +1,17 @@
-# Getting Started with Create React App
+### 一个做着做着变成了玩具的项目(又或者本来就是玩具)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### 碎碎念
 
-## Available Scripts
+本意是想自己试着做一个网络聊天室的，正好React也没学过，就学着写一下。这个项目每天摸几个小时，摸了俩星期，大概整的时间一个星期可能。目前可以实现单对单在线聊天，然后也是这个时候才发现，好像前端没有安全存储聊天记录等消息的途径？(也可能是我知识盲区了) 总之就突然变成没啥用了(不能存聊天记录的聊天室就很奇怪)，于是乎就当个玩具放上来看个乐呵。这个项目是前端部分，还有一个后端部分，可能有后续也可能没有
 
-In the project directory, you can run:
+#### 技术栈
 
-### `npm start`
+1. react，本来就是为了学一下React写的，上手写了之后才发现跟Vue的差别确实有点大，react是一个更纯粹的库，扩展性极高，自行封装一些组件也很有意思(但react好像默认不使用style-scoped，不论在哪定义的class，只要引入了就全局可用)
+2. react-router-v6，路由守卫设置起来比vue麻烦一点，但也挺有意思
+3. axios，网络请求用，虽然项目中更多的地方是用了websocket进行数据传输
+4. websocket，主要使用的传输手段，传统的“实时”聊天的实现方法无非几种，其中轮询和websocket用的最多，但轮询对性能的耗费更高，同时websocket通信也没用过，所以就选用了websocket做这个项目
+5. rsa，用于加密传输登录密码
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### 运行
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+将`config-example.json`重命名为`config.json`并填入关键字段`baseURL`、`websocketURL`、`publicKey`并将`useMock`改为false(前提是后端得开着)，然后使用`yarn install`安装依赖，`yarn start`运行
